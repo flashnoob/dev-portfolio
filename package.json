@@ -1,0 +1,21 @@
+{
+  "name": "cv1",
+  "version": "1.0.0",
+  "description": "Directory Structure\r -------------------\r css\\              - Stylesheets CSS files for the template.\r images\\           - Images used in template.\r scripts\\          - JavaScript used in the template.\r styles\\           - SCSS source files for stylesheets CSS. Available in Purchased versions only.\r favicon.ico       - Favicon placeholder provided for the template.\r index.html        - Main HTML page to open the template in browser.\r *.html            - Additional HTML pages (if any).\r LICENSE-*.txt     - License file as per your downloaded variant.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html --port 8080",
+    "build": "parcel build ./dist index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aos": "^3.0.0-beta.6",
+    "bootstrap": "^5.0.0-beta1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.32.8"
+  }
+}
