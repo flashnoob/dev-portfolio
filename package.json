@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "aos": "^3.0.0-beta.6",
-    "bootstrap": "^5.0.0-beta1"
+    "bootstrap": "^5.0.0-beta1",
+    "dark-mode-light-mode": "^1.3.3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
