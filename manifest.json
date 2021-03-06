@@ -1,0 +1,48 @@
+{
+  "dir": "ltr",
+  "lang": "en-US",
+  "name": "Sachin Kotian",
+  "short_name": "Sachin Kotian",
+  "scope": "/",
+  "display": "browser",
+  "start_url": "https://kotiansachin.netlify.app/",
+  "background_color": "#000000",
+  "theme_color": "transparent",
+  "description": "🖥 portfolio made with react",
+  "orientation": "any",
+  "related_applications": [],
+  "prefer_related_applications": "false",
+  "icons": [
+    {
+      "src": "/favicon-32x32.be3cc0a6.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/mstile-70x70.2fcba2a0.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/mstile-144x144.9435d608.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.edcf59fa.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/mstile-310x310.905a23a9.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.cf09a86d.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "url": "https://kotiansachin.netlify.app/"
+}
