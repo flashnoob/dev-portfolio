@@ -7,16 +7,12 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-[data-theme="dark"]{--bg:#0d0d0d;--bg2:#111;--bg3:#161616;--fg:#e8e8e2;--muted:#555;--muted2:#888;--dim:#2a2a2a;--border:#222;--green:#8fbc78;--card:#131313;--hover:#1a1a1a;--shadow:rgba(0,0,0,.6);--yellow:#d4b96a}
-[data-theme="light"]{--bg:#f7f6f2;--bg2:#eeecea;--bg3:#e8e6e0;--fg:#1a1a1a;--muted:#aaa;--muted2:#666;--dim:#ddd;--border:#ddd;--green:#4a7c3f;--card:#fff;--hover:#f0eeea;--shadow:rgba(0,0,0,.1);--yellow:#b8860b}
-[data-theme="sepia"]{--bg:#1a1208;--bg2:#201808;--bg3:#251e0c;--fg:#e8d9b0;--muted:#6b5a30;--muted2:#a08040;--dim:#3a2e10;--border:#2e2408;--green:#a8902a;--card:#1e1508;--hover:#221a0a;--shadow:rgba(0,0,0,.5);--yellow:#c8a030}
-
+[data-theme="dark"]{--bg:#0d0d0d;--bg2:#111;--bg3:#161616;--fg:#e8e8e2;--muted:#555;--muted2:#888;--dim:#2a2a2a;--border:#222;--green:#8fbc78;--card:#131313;--hover:#1a1a1a;--shadow:rgba(0,0,0,.6)}
+[data-theme="light"]{--bg:#f7f6f2;--bg2:#eeecea;--bg3:#e8e6e0;--fg:#1a1a1a;--muted:#aaa;--muted2:#666;--dim:#ddd;--border:#ddd;--green:#4a7c3f;--card:#fff;--hover:#f0eeea;--shadow:rgba(0,0,0,.1)}
+[data-theme="sepia"]{--bg:#1a1208;--bg2:#201808;--bg3:#251e0c;--fg:#e8d9b0;--muted:#6b5a30;--muted2:#a08040;--dim:#3a2e10;--border:#2e2408;--green:#a8902a;--card:#1e1508;--hover:#221a0a;--shadow:rgba(0,0,0,.5)}
 html{font-size:14px;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:'IBM Plex Mono','Courier New',monospace;line-height:1.75;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");opacity:.35}
-
-/* ── TOPBAR ── */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.4rem 1.5rem;gap:1rem;backdrop-filter:blur(8px)}
 .topbar-left{display:flex;align-items:center;gap:1rem;font-size:.68rem;color:var(--muted2)}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2.5s infinite;display:inline-block}
@@ -25,15 +21,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
 .btn{font-family:'IBM Plex Mono',monospace;font-size:.65rem;border:1px solid var(--border);background:transparent;color:var(--muted2);padding:.25rem .65rem;cursor:pointer;letter-spacing:.06em;transition:all .15s;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
 .btn:hover{color:var(--fg);border-color:var(--muted)}
 .btn.active{color:var(--fg);border-color:var(--muted);background:var(--bg3)}
-.btn-icon{padding:.25rem .5rem}
 .btn-primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .btn-primary:hover{opacity:.85;color:var(--bg)}
-
-/* ── VIEW COUNTER BADGE ── */
-.view-badge{font-size:.65rem;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:.35rem}
-.view-badge span{color:var(--muted2)}
-
-/* ── CMD PALETTE ── */
 .cmd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;align-items:flex-start;justify-content:center;padding-top:15vh;backdrop-filter:blur(4px)}
 .cmd-overlay.open{display:flex}
 .cmd-box{background:var(--bg2);border:1px solid var(--border);width:min(540px,90vw);box-shadow:0 24px 64px var(--shadow)}
@@ -43,11 +32,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
 .cmd-results{max-height:320px;overflow-y:auto}
 .cmd-item{display:flex;align-items:center;gap:.8rem;padding:.62rem 1rem;cursor:pointer;font-size:.76rem;color:var(--muted2);border-bottom:1px solid var(--border);transition:background .1s,color .1s}
 .cmd-item:hover,.cmd-item.selected{background:var(--bg3);color:var(--fg)}
-.cmd-item-icon{color:var(--muted);width:14px;text-align:center;flex-shrink:0}
-.cmd-item-key{margin-left:auto;font-size:.6rem;color:var(--muted);border:1px solid var(--border);padding:.1rem .35rem}
 .cmd-footer{padding:.4rem 1rem;font-size:.6rem;color:var(--muted);border-top:1px solid var(--border);display:flex;gap:1.2rem}
-
-/* ── IMPORT PANEL ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex}
 .modal-box{background:var(--bg2);border:1px solid var(--border);width:min(500px,90vw);padding:2rem;max-height:90vh;overflow-y:auto}
@@ -62,45 +47,32 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
 .import-or{text-align:center;font-size:.65rem;color:var(--muted);margin:.7rem 0}
 .import-actions{display:flex;gap:.5rem;flex-wrap:wrap}
 .import-actions .btn{flex:1}
-#fileInput{display:none}
 .import-preview{margin-top:1rem;padding:.8rem;background:var(--bg3);border:1px solid var(--border);font-size:.7rem;color:var(--muted2);max-height:120px;overflow-y:auto;display:none}
-
-/* ── HIRE ME PANEL ── */
-.hire-panel .modal-box{max-width:420px}
 .hire-options{display:flex;flex-direction:column;gap:.8rem;margin-top:1.2rem}
-.hire-option{display:flex;align-items:center;gap:1rem;border:1px solid var(--border);padding:1rem 1.2rem;cursor:pointer;transition:background .15s;text-decoration:none;color:var(--fg)}
+.hire-option{display:flex;align-items:center;gap:1rem;border:1px solid var(--border);padding:1rem 1.2rem;transition:background .15s;text-decoration:none;color:var(--fg)}
 .hire-option:hover{background:var(--bg3)}
-.hire-option-icon{font-size:1.2rem;flex-shrink:0}
-.hire-option-text .t{font-size:.8rem;font-weight:500;margin-bottom:.2rem}
-.hire-option-text .s{font-size:.68rem;color:var(--muted2)}
-.hire-arrow{margin-left:auto;color:var(--muted);font-size:.8rem}
-
-/* ── NOTEPAD PANEL ── */
-.notepad-panel .modal-box{max-width:480px}
+.hire-opt-icon{font-size:1.2rem;flex-shrink:0}
+.hire-opt-t{font-size:.8rem;font-weight:500;margin-bottom:.2rem}
+.hire-opt-s{font-size:.68rem;color:var(--muted2)}
+.hire-arrow{margin-left:auto;color:var(--muted)}
 .notes-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;max-height:260px;overflow-y:auto}
-.note-card{background:var(--bg3);border:1px solid var(--border);padding:.8rem 1rem;position:relative;transition:border-color .15s}
-.note-card:hover{border-color:var(--muted)}
+.note-card{background:var(--bg3);border:1px solid var(--border);padding:.8rem 1rem}
 .note-card-name{font-size:.65rem;color:var(--green);letter-spacing:.08em;margin-bottom:.3rem}
 .note-card-text{font-size:.78rem;color:var(--muted2);line-height:1.6}
 .note-card-time{font-size:.6rem;color:var(--muted);margin-top:.4rem}
-.note-card-del{position:absolute;top:.6rem;right:.8rem;background:none;border:none;cursor:pointer;color:var(--muted);font-size:.7rem;opacity:0;transition:opacity .15s}
-.note-card:hover .note-card-del{opacity:1}
 .note-empty{font-size:.75rem;color:var(--muted);text-align:center;padding:1.5rem}
-.note-form{display:flex;flex-direction:column;gap:.6rem}
-.note-input{background:var(--bg3);border:1px solid var(--border);color:var(--fg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:.6rem .8rem;outline:none;resize:none;transition:border-color .15s;width:100%}
-.note-input:focus{border-color:var(--muted)}
-.note-row{display:flex;gap:.5rem}
 .note-count{font-size:.65rem;color:var(--muted);margin-bottom:.5rem}
-
-/* ── AI CHAT ── */
+.note-form{display:flex;flex-direction:column;gap:.6rem}
+.note-input{background:var(--bg3);border:1px solid var(--border);color:var(--fg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:.6rem .8rem;outline:none;resize:none;width:100%;transition:border-color .15s}
+.note-input:focus{border-color:var(--muted)}
 .chat-btn{position:fixed;bottom:1.8rem;right:1.8rem;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--fg);color:var(--bg);border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--shadow);transition:transform .2s}
 .chat-btn:hover{transform:scale(1.08)}
 .chat-panel{position:fixed;bottom:5rem;right:1.8rem;z-index:300;width:min(360px,92vw);background:var(--bg2);border:1px solid var(--border);box-shadow:0 16px 48px var(--shadow);display:none;flex-direction:column;max-height:460px}
 .chat-panel.open{display:flex}
 .chat-header{padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.chat-header-left{display:flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:500}
+.chat-hl{display:flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:500}
 .chat-status{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-.chat-close{background:none;border:none;cursor:pointer;color:var(--muted);font-size:.8rem}
+.chat-x{background:none;border:none;cursor:pointer;color:var(--muted);font-size:.8rem}
 .chat-messages{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.75rem}
 .msg{display:flex;flex-direction:column;gap:.2rem;max-width:90%}
 .msg.user{align-self:flex-end;align-items:flex-end}
@@ -108,24 +80,20 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
 .msg-bubble{padding:.5rem .8rem;font-size:.75rem;line-height:1.6;border:1px solid var(--border)}
 .msg.user .msg-bubble{background:var(--bg3);color:var(--fg)}
 .msg.ai .msg-bubble{background:var(--bg);color:var(--muted2)}
-.msg-label{font-size:.58rem;color:var(--muted);letter-spacing:.06em}
+.msg-lbl{font-size:.58rem;color:var(--muted);letter-spacing:.06em}
 .chat-input-row{display:flex;border-top:1px solid var(--border)}
 .chat-input{flex:1;background:transparent;border:none;outline:none;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--fg);padding:.75rem 1rem}
-.chat-send{background:none;border:none;border-left:1px solid var(--border);cursor:pointer;color:var(--muted2);padding:.75rem 1rem;font-size:.8rem;transition:color .15s}
+.chat-send{background:none;border:none;border-left:1px solid var(--border);cursor:pointer;color:var(--muted2);padding:.75rem 1rem;transition:color .15s}
 .chat-send:hover{color:var(--fg)}
 .typing{display:flex;gap:4px;padding:.5rem .8rem;border:1px solid var(--border);background:var(--bg)}
 .typing span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:tdot 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
-
-/* ── LAYOUT ── */
 .container{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
-
-/* HERO */
 .hero{padding:3.5rem 0 3.5rem;border-bottom:1px solid var(--border);margin-bottom:3.5rem}
 .hero-prompt{font-size:.68rem;color:var(--muted);letter-spacing:.1em;margin-bottom:1rem}
-.hero-prompt .p-green{color:var(--green)}
+.p-green{color:var(--green)}
 .cursor{display:inline-block;width:2px;height:.9em;background:var(--fg);vertical-align:middle;animation:blink 1.1s step-end infinite;margin-left:1px}
 @keyframes blink{50%{opacity:0}}
 .hero-name{font-size:clamp(2rem,6vw,3.6rem);font-weight:300;letter-spacing:-.02em;line-height:1.1;margin-bottom:.5rem}
@@ -133,40 +101,25 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
 .hero-role{font-size:.7rem;color:var(--muted2);letter-spacing:.12em;margin-bottom:1.8rem}
 .hero-desc{font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:.9rem;color:var(--muted2);max-width:520px;line-height:1.85}
 .hero-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
-
-/* HIRE ME CTA */
-.hire-cta{
-  margin-top:2rem;border:1px solid var(--border);padding:1.4rem 1.6rem;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-  background:var(--card);position:relative;overflow:hidden;
-}
-.hire-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(143,188,120,.04),transparent);pointer-events:none}
-.hire-cta-left .t{font-size:.85rem;font-weight:500;margin-bottom:.25rem}
-.hire-cta-left .s{font-size:.72rem;color:var(--muted2)}
+.hire-cta{margin-top:2rem;border:1px solid var(--border);padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--card)}
+.hire-cta-t{font-size:.85rem;font-weight:500;margin-bottom:.25rem}
+.hire-cta-s{font-size:.72rem;color:var(--muted2)}
 .hire-cta-btns{display:flex;gap:.5rem;flex-wrap:wrap}
-
-/* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3.5rem}
 .stat{background:var(--bg);padding:1.2rem;text-align:center}
 .stat-num{font-size:1.9rem;font-weight:300;color:var(--fg);line-height:1;margin-bottom:.25rem}
 .stat-label{font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-
-/* SECTIONS */
 section{margin-bottom:4rem;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
 section.visible{opacity:1;transform:none}
 .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem}
 .section-tag{font-size:.6rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;border:1px solid var(--border);padding:.2rem .6rem;flex-shrink:0}
 .section-line{flex:1;height:1px;background:var(--border)}
-
-/* SKILLS */
 .skills-wrap{display:flex;flex-direction:column;gap:1rem}
 .skill-row{display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap}
 .skill-cat{font-size:.62rem;color:var(--muted);letter-spacing:.08em;width:110px;flex-shrink:0;padding-top:.15rem}
 .skill-tags{display:flex;flex-wrap:wrap;gap:.3rem}
 .tag{font-size:.72rem;color:var(--muted2);border:1px solid var(--border);padding:.1rem .48rem;transition:color .15s,border-color .15s;cursor:default}
 .tag:hover{color:var(--fg);border-color:var(--muted)}
-
-/* EXPERIENCE */
 .job{border-left:1px solid var(--border);padding-left:1.5rem;margin-bottom:2.2rem;position:relative;transition:border-color .2s}
 .job:hover{border-color:var(--muted)}
 .job::before{content:'';position:absolute;left:-3px;top:7px;width:5px;height:5px;border:1px solid var(--muted);background:var(--bg);transition:background .2s}
@@ -177,53 +130,48 @@ section.visible{opacity:1;transform:none}
 .job-role{font-size:.7rem;color:var(--muted2);margin-bottom:.75rem;letter-spacing:.05em}
 .job-points{list-style:none;display:flex;flex-direction:column;gap:.35rem}
 .job-points li{font-size:.78rem;color:#666;padding-left:1rem;position:relative;line-height:1.65;transition:color .15s}
-.job-points li::before{content:'─';position:absolute;left:0;color:var(--muted)}
+.job-points li::before{content:'--';position:absolute;left:0;color:var(--muted)}
 .job:hover .job-points li{color:var(--muted2)}
-
-/* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .project-card{background:var(--card);padding:1.4rem;transition:background .2s;position:relative;overflow:hidden}
 .project-card:hover{background:var(--hover)}
-.project-card::after{content:'↗';position:absolute;top:1rem;right:1rem;color:var(--muted);font-size:.8rem;opacity:0;transition:opacity .2s}
+.project-card::after{content:'up';position:absolute;top:1rem;right:1rem;color:var(--muted);font-size:.8rem;opacity:0;transition:opacity .2s}
 .project-card:hover::after{opacity:1}
 .proj-name{font-size:.83rem;font-weight:500;color:var(--fg);margin-bottom:.35rem}
 .proj-desc{font-size:.73rem;color:var(--muted2);line-height:1.6;margin-bottom:.8rem}
 .proj-stack{display:flex;flex-wrap:wrap;gap:.25rem}
-.proj-tech{font-size:.62rem;color:var(--muted);border:1px solid var(--dim);padding:.06rem .38rem;letter-spacing:.04em}
-
-/* BLOG POSTS */
+.proj-tech{font-size:.62rem;color:var(--muted);border:1px solid var(--dim);padding:.06rem .38rem}
+.blog-tabs{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-bottom:none}
+.blog-tab{flex:1;background:var(--card);padding:.6rem 1rem;font-size:.68rem;letter-spacing:.06em;color:var(--muted2);cursor:pointer;border:none;font-family:'IBM Plex Mono',monospace;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.blog-tab:hover{background:var(--hover);color:var(--fg)}
+.blog-tab.active{background:var(--bg3);color:var(--fg)}
+.blog-tab-count{font-size:.58rem;color:var(--muted);border:1px solid var(--border);padding:.05rem .35rem}
 .blog-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
-.blog-card{background:var(--card);padding:1.2rem 1.4rem;transition:background .2s;display:flex;align-items:flex-start;gap:1rem;text-decoration:none;color:inherit}
+.blog-card{background:var(--card);padding:1.1rem 1.4rem;transition:background .2s;display:flex;align-items:flex-start;gap:1rem;text-decoration:none;color:inherit}
 .blog-card:hover{background:var(--hover)}
-.blog-card-num{font-size:.65rem;color:var(--muted);width:20px;flex-shrink:0;padding-top:.15rem}
-.blog-card-body{flex:1}
+.blog-src-badge{font-size:.58rem;font-weight:600;padding:.18rem .45rem;flex-shrink:0;margin-top:.1rem;letter-spacing:.04em}
+.blog-src-badge.medium{background:#1a1a1a;color:#fff}
+.blog-src-badge.devto{background:#3b49df;color:#fff}
+.blog-body{flex:1;min-width:0}
 .blog-title{font-size:.82rem;font-weight:500;color:var(--fg);margin-bottom:.3rem;line-height:1.4}
-.blog-meta{font-size:.65rem;color:var(--muted);display:flex;gap:.8rem;flex-wrap:wrap}
+.blog-meta{font-size:.64rem;color:var(--muted);display:flex;gap:.7rem;flex-wrap:wrap}
+.blog-tags-row{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}
 .blog-tag{font-size:.6rem;color:var(--muted2);border:1px solid var(--dim);padding:.05rem .35rem}
-.blog-arrow{color:var(--muted);font-size:.8rem;flex-shrink:0;padding-top:.15rem;opacity:0;transition:opacity .15s}
+.blog-arrow{color:var(--muted);font-size:.8rem;flex-shrink:0;padding-top:.1rem;opacity:0;transition:opacity .15s}
 .blog-card:hover .blog-arrow{opacity:1}
-.blog-fetch-row{display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap}
-.blog-source-input{background:var(--bg3);border:1px solid var(--border);color:var(--fg);font-family:'IBM Plex Mono',monospace;font-size:.72rem;padding:.3rem .7rem;outline:none;flex:1;min-width:160px;transition:border-color .15s}
-.blog-source-input:focus{border-color:var(--muted)}
-.blog-loading{font-size:.72rem;color:var(--muted);padding:1rem;text-align:center}
-.blog-error{font-size:.72rem;color:#c87a7a;padding:1rem;text-align:center}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:1.8rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.blog-status{font-size:.72rem;color:var(--muted);padding:1.4rem;text-align:center;border:1px solid var(--border)}
+.blog-footer-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:.6rem;font-size:.62rem;color:var(--muted)}
+.tl-wrap{position:relative;padding-left:1.8rem}
+.tl-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
 .tl-item{position:relative;margin-bottom:1.5rem}
 .tl-dot{position:absolute;left:-1.98rem;top:.4rem;width:7px;height:7px;border:1px solid var(--muted);background:var(--bg)}
 .tl-year{font-size:.62rem;color:var(--muted);letter-spacing:.08em;margin-bottom:.2rem}
 .tl-title{font-size:.82rem;font-weight:500;color:var(--fg);margin-bottom:.15rem}
 .tl-desc{font-size:.73rem;color:var(--muted2);line-height:1.6}
-
-/* PHILOSOPHY */
 .philosophy{border:1px solid var(--border);padding:1.8rem;position:relative}
 .philosophy::before{content:'"';position:absolute;top:-.6rem;left:1.2rem;font-size:4rem;color:var(--dim);font-family:Georgia,serif;line-height:1}
 .philosophy-text{font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:.9rem;color:var(--muted2);line-height:1.85;font-style:italic;margin-bottom:.8rem}
-.philosophy-attr{font-size:.65rem;color:var(--muted);letter-spacing:.08em}
-
-/* CONTACT */
+.philosophy-attr{font-size:.65rem;color:var(--muted)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .contact-item{background:var(--card);padding:1.1rem 1.3rem;transition:background .2s;display:flex;flex-direction:column;gap:.2rem}
 .contact-item:hover{background:var(--hover)}
@@ -231,15 +179,11 @@ section.visible{opacity:1;transform:none}
 .c-value{font-size:.8rem;color:var(--fg)}
 .c-value a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--border);transition:border-color .15s}
 .c-value a:hover{border-color:var(--muted2)}
-
-/* EDUCATION */
 .edu-block{border:1px solid var(--border);padding:1.3rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;transition:background .2s}
 .edu-block:hover{background:var(--hover)}
 .edu-deg{font-size:.85rem;font-weight:500;margin-bottom:.2rem}
 .edu-uni{font-size:.72rem;color:var(--muted2)}
-.edu-badge{font-size:.6rem;border:1px solid var(--dim);color:var(--muted);padding:.18rem .5rem;letter-spacing:.06em;white-space:nowrap}
-
-/* SIDE NAV */
+.edu-badge{font-size:.6rem;border:1px solid var(--dim);color:var(--muted);padding:.18rem .5rem}
 .sidenav{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:50}
 .sidenav a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--muted);font-size:.58rem;letter-spacing:.1em;transition:color .15s}
 .sidenav a::before{content:'';display:block;width:18px;height:1px;background:currentColor;transition:width .2s}
@@ -247,157 +191,109 @@ section.visible{opacity:1;transform:none}
 .sidenav a:hover::before,.sidenav a.active::before{width:26px}
 .sidenav .lbl{display:none}
 .sidenav a:hover .lbl{display:inline}
-
-/* FOOTER */
+.note-fab{position:fixed;bottom:1.8rem;left:1.8rem;z-index:300;display:flex;align-items:center;gap:.5rem;background:var(--bg2);border:1px solid var(--border);color:var(--muted2);font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.4rem .9rem;cursor:pointer;transition:all .15s}
+.note-fab:hover{color:var(--fg);border-color:var(--muted)}
+.note-badge{background:var(--green);color:var(--bg);border-radius:50%;width:16px;height:16px;font-size:.55rem;display:flex;align-items:center;justify-content:center;font-weight:600}
 footer{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.65rem;color:var(--muted)}
-
-/* TOAST */
 .toast{position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--fg);color:var(--bg);font-size:.7rem;padding:.5rem 1.2rem;letter-spacing:.06em;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:9998}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* NOTE FLOATING BUTTON */
-.note-fab{position:fixed;bottom:1.8rem;left:1.8rem;z-index:300;display:flex;align-items:center;gap:.5rem;background:var(--bg2);border:1px solid var(--border);color:var(--muted2);font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.4rem .9rem;cursor:pointer;transition:all .15s;letter-spacing:.06em}
-.note-fab:hover{color:var(--fg);border-color:var(--muted)}
-.note-fab .nb{background:var(--green);color:var(--bg);border-radius:50%;width:16px;height:16px;font-size:.55rem;display:flex;align-items:center;justify-content:center;font-weight:600}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  .container{padding:4.5rem 1.2rem 6rem}
-  .projects-grid,.stats-row,.contact-grid{grid-template-columns:1fr}
-  .sidenav{display:none}
-  .topbar{padding:.4rem 1rem}
-  .topbar-right .btn-text{display:none}
-  .hero-name{font-size:2rem}
-  .hire-cta{flex-direction:column}
-}
-@media print{
-  .topbar,.sidenav,.chat-btn,.chat-panel,.note-fab,.toast{display:none!important}
-  body{background:#fff;color:#000}
-  section{opacity:1;transform:none}
-}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@media(max-width:640px){.container{padding:4.5rem 1.2rem 6rem}.projects-grid,.stats-row,.contact-grid{grid-template-columns:1fr}.sidenav{display:none}.topbar{padding:.4rem 1rem}.hero-name{font-size:2rem}.hire-cta{flex-direction:column}.blog-tabs{flex-direction:column}}
+@media print{.topbar,.sidenav,.chat-btn,.chat-panel,.note-fab,.toast{display:none!important}body{background:#fff;color:#000}section{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
-
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-left">
     <span><span class="dot"></span> <span id="clock">--:--:-- IST</span></span>
-    <span class="view-badge">👁 <span id="viewCount">...</span> <span>views</span></span>
+    <span>views: <span id="viewCount">...</span></span>
   </div>
   <div class="topbar-right">
-    <button class="btn" onclick="openImport()">⬆ <span class="btn-text">Import</span></button>
-    <button class="btn" onclick="copyLink()">⎘ <span class="btn-text">Share</span></button>
-    <button class="btn" onclick="downloadResume()" title="Download Resume PDF">⬇ <span class="btn-text">Resume</span></button>
-    <button class="btn btn-icon" onclick="cycleTheme()" title="Switch theme">◐</button>
-    <button class="btn btn-icon" onclick="openCmd()" title="⌘K">⌘</button>
+    <button class="btn" onclick="openImport()">Import</button>
+    <button class="btn" onclick="copyLink()">Share</button>
+    <button class="btn" onclick="downloadResume()">Resume PDF</button>
+    <button class="btn" onclick="cycleTheme()">Theme</button>
+    <button class="btn" onclick="openCmd()">Cmd K</button>
   </div>
 </div>
 
-<!-- CMD PALETTE -->
 <div class="cmd-overlay" id="cmdOverlay" onclick="if(event.target===this)closeCmd()">
   <div class="cmd-box">
-    <div class="cmd-input-wrap"><span class="cmd-prompt">›</span><input class="cmd-input" id="cmdInput" placeholder="Type a command or jump to section…" autocomplete="off"></div>
+    <div class="cmd-input-wrap"><span class="cmd-prompt">&gt;</span><input class="cmd-input" id="cmdInput" placeholder="Jump to section or run a command" autocomplete="off"></div>
     <div class="cmd-results" id="cmdResults"></div>
-    <div class="cmd-footer"><span>↑↓ navigate</span><span>↵ select</span><span>esc close</span></div>
+    <div class="cmd-footer"><span>up/down navigate</span><span>enter select</span><span>esc close</span></div>
   </div>
 </div>
 
-<!-- IMPORT PANEL -->
-<div class="modal-overlay" id="importPanel" onclick="if(event.target===this)closeImport()">
+<div class="modal-overlay" id="importModal" onclick="if(event.target===this)closeImport()">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeImport()">✕ close</button>
+    <button class="modal-close" onclick="closeImport()">close</button>
     <div class="modal-title">Import Resume</div>
-    <div class="modal-sub">Upload a <strong>.csv</strong> or <strong>.json</strong> file to auto-populate.<br>CSV: columns <code>name, role, email, phone, location, description, skills</code></div>
+    <div class="modal-sub">Upload a .csv or .json file to auto-populate the portfolio. CSV columns: name, role, email, phone, location, description, skills</div>
     <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="handleDrop(event)">
-      <div class="drop-zone-icon">📄</div>
+      <div class="drop-zone-icon">file</div>
       <div class="drop-zone-text">Drop file here or click to browse</div>
       <div class="drop-zone-sub">.csv and .json supported</div>
     </div>
-    <input type="file" id="fileInput" accept=".csv,.json" onchange="handleFileInput(this)">
-    <div class="import-or">— or use a sample —</div>
+    <input type="file" id="fileInput" accept=".csv,.json" style="display:none" onchange="handleFileInput(this)">
+    <div class="import-or">-- or use a sample --</div>
     <div class="import-actions">
       <button class="btn" onclick="loadSampleCSV()">Sample CSV</button>
       <button class="btn" onclick="loadSampleJSON()">Sample JSON</button>
     </div>
     <div class="import-preview" id="importPreview"></div>
     <br>
-    <div class="import-actions">
-      <button class="btn active" id="applyImportBtn" onclick="applyImport()" style="display:none">✓ Apply &amp; Populate</button>
-    </div>
+    <div class="import-actions"><button class="btn active" id="applyImportBtn" onclick="applyImport()" style="display:none">Apply and Populate</button></div>
   </div>
 </div>
 
-<!-- HIRE ME PANEL -->
-<div class="modal-overlay hire-panel" id="hirePanel" onclick="if(event.target===this)closeHire()">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeHire()">✕ close</button>
+<div class="modal-overlay" id="hireModal" onclick="if(event.target===this)closeHire()">
+  <div class="modal-box" style="max-width:420px">
+    <button class="modal-close" onclick="closeHire()">close</button>
     <div class="modal-title">Let's work together</div>
-    <div class="modal-sub" style="margin-bottom:0">Choose how you'd like to reach out:</div>
+    <div class="modal-sub" style="margin-bottom:0">Choose how you would like to reach out:</div>
     <div class="hire-options">
-      <a class="hire-option" href="mailto:kotian.sachin.12@gmail.com?subject=Opportunity for Sachin Kotian">
-        <span class="hire-option-icon">✉</span>
-        <div class="hire-option-text"><div class="t">Send an Email</div><div class="s">kotian.sachin.12@gmail.com</div></div>
-        <span class="hire-arrow">↗</span>
-      </a>
-      <a class="hire-option" href="https://linkedin.com/in/sachin-kotian-1818524a" target="_blank">
-        <span class="hire-option-icon">in</span>
-        <div class="hire-option-text"><div class="t">Connect on LinkedIn</div><div class="s">sachin-kotian-1818524a</div></div>
-        <span class="hire-arrow">↗</span>
-      </a>
-      <a class="hire-option" href="tel:+917387171322">
-        <span class="hire-option-icon">✆</span>
-        <div class="hire-option-text"><div class="t">Call directly</div><div class="s">+91 7387 171322</div></div>
-        <span class="hire-arrow">↗</span>
-      </a>
-      <div class="hire-option" style="cursor:default;opacity:.6">
-        <span class="hire-option-icon">📅</span>
-        <div class="hire-option-text"><div class="t">Book a call</div><div class="s">Add your Calendly link here</div></div>
-      </div>
+      <a class="hire-option" href="mailto:kotian.sachin.12@gmail.com?subject=Opportunity for Sachin Kotian"><span class="hire-opt-icon">email</span><div><div class="hire-opt-t">Send an Email</div><div class="hire-opt-s">kotian.sachin.12@gmail.com</div></div><span class="hire-arrow">go</span></a>
+      <a class="hire-option" href="https://linkedin.com/in/sachin-kotian-1818524a" target="_blank"><span class="hire-opt-icon">in</span><div><div class="hire-opt-t">Connect on LinkedIn</div><div class="hire-opt-s">sachin-kotian-1818524a</div></div><span class="hire-arrow">go</span></a>
+      <a class="hire-option" href="tel:+917387171322"><span class="hire-opt-icon">call</span><div><div class="hire-opt-t">Call directly</div><div class="hire-opt-s">+91 7387 171322</div></div><span class="hire-arrow">go</span></a>
+      <div class="hire-option" style="opacity:.5;cursor:default"><span class="hire-opt-icon">cal</span><div><div class="hire-opt-t">Book a call</div><div class="hire-opt-s">Add your Calendly link here</div></div></div>
     </div>
   </div>
 </div>
 
-<!-- NOTEPAD PANEL -->
-<div class="modal-overlay notepad-panel" id="notepadPanel" onclick="if(event.target===this)closeNotepad()">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeNotepad()">✕ close</button>
-    <div class="modal-title">📝 Recruiter Notepad</div>
-    <div class="modal-sub" style="margin-bottom:.8rem">Leave a note for Sachin — publicly visible to all visitors.</div>
-    <div class="note-count" id="noteCount">Loading notes…</div>
-    <div class="notes-list" id="notesList"><div class="blog-loading">Loading…</div></div>
+<div class="modal-overlay" id="notepadModal" onclick="if(event.target===this)closeNotepad()">
+  <div class="modal-box" style="max-width:480px">
+    <button class="modal-close" onclick="closeNotepad()">close</button>
+    <div class="modal-title">Recruiter Notepad</div>
+    <div class="modal-sub" style="margin-bottom:.8rem">Leave a public note for Sachin -- visible to all visitors.</div>
+    <div class="note-count" id="noteCount">Loading...</div>
+    <div class="notes-list" id="notesList"><div class="note-empty">Loading...</div></div>
     <div class="note-form">
-      <input class="note-input" id="noteAuthor" placeholder="Your name / company (e.g. Jane · Google)" style="height:2.2rem">
-      <textarea class="note-input" id="noteText" rows="3" placeholder="Your message — 'Great profile!', 'Interested in a backend role at…', etc."></textarea>
-      <div class="note-row">
-        <button class="btn active" onclick="submitNote()" style="flex:1">Post Note</button>
-      </div>
+      <input class="note-input" id="noteAuthor" placeholder="Your name / company" style="height:2.4rem">
+      <textarea class="note-input" id="noteText" rows="3" placeholder="Your message..."></textarea>
+      <button class="btn active" onclick="submitNote()">Post Note</button>
     </div>
   </div>
 </div>
 
-<!-- AI CHAT -->
-<button class="chat-btn" onclick="toggleChat()" title="Ask AI about Sachin">✦</button>
+<button class="chat-btn" onclick="toggleChat()" title="Ask AI about Sachin">AI</button>
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
-    <div class="chat-header-left"><span class="chat-status"></span><span>Ask about Sachin</span></div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
+    <div class="chat-hl"><span class="chat-status"></span><span>Ask about Sachin</span></div>
+    <button class="chat-x" onclick="toggleChat()">close</button>
   </div>
   <div class="chat-messages" id="chatMessages">
-    <div class="msg ai"><span class="msg-label">AI ASSISTANT</span><div class="msg-bubble">Hi! Ask me anything about Sachin — skills, experience, fit for a role, or anything on his resume.</div></div>
+    <div class="msg ai"><span class="msg-lbl">AI</span><div class="msg-bubble">Hi! Ask me anything about Sachin -- skills, experience, fit for a role, or his projects.</div></div>
   </div>
   <div class="chat-input-row">
-    <input class="chat-input" id="chatInput" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')sendChat()">
-    <button class="chat-send" onclick="sendChat()">↑</button>
+    <input class="chat-input" id="chatInput" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">send</button>
   </div>
 </div>
 
-<!-- NOTE FAB -->
-<button class="note-fab" onclick="openNotepad()">
-  📝 Notes <span class="nb" id="noteBadge">0</span>
-</button>
+<button class="note-fab" onclick="openNotepad()">Notes <span class="note-badge" id="noteBadge">0</span></button>
 
-<!-- SIDE NAV -->
 <nav class="sidenav">
   <a href="#about"><span class="lbl">ABOUT&nbsp;</span></a>
   <a href="#skills"><span class="lbl">SKILLS&nbsp;</span></a>
@@ -409,140 +305,134 @@ footer{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justif
 
 <div class="toast" id="toast"></div>
 
-<!-- MAIN -->
 <div class="container">
-
   <header class="hero" id="about">
-    <div class="hero-prompt"><span class="p-green">~/sachin-kotian</span> $ whoami<span class="cursor"></span></div>
+    <div class="hero-prompt"><span class="p-green">~/sachin-kotian</span> $ whoami <span class="cursor"></span></div>
     <h1 class="hero-name"><strong>Sachin Kotian</strong></h1>
-    <div class="hero-role">SR. SOFTWARE ENGINEER · 6+ YEARS · BACKEND SYSTEMS</div>
-    <p class="hero-desc">I build the invisible infrastructure that makes software feel fast and reliable. Specializing in distributed systems, microservices, and API design — I care deeply about performance, clarity, and code that outlasts the sprint it was written in.</p>
+    <div class="hero-role">SR. SOFTWARE ENGINEER &middot; 6+ YEARS &middot; BACKEND SYSTEMS</div>
+    <p class="hero-desc">I build the invisible infrastructure that makes software feel fast and reliable. Specializing in distributed systems, microservices, and API design -- currently leading a real-time reporting platform powered by ClickHouse and Java at scale.</p>
     <div class="hero-links">
-      <a href="mailto:kotian.sachin.12@gmail.com" class="btn">✉ Email</a>
-      <a href="https://linkedin.com/in/sachin-kotian-1818524a" target="_blank" class="btn">in LinkedIn</a>
-      <button class="btn" onclick="downloadResume()">⬇ Resume PDF</button>
-      <button class="btn" onclick="copyLink()">⎘ Share</button>
+      <a href="mailto:kotian.sachin.12@gmail.com" class="btn">Email</a>
+      <a href="https://linkedin.com/in/sachin-kotian-1818524a" target="_blank" class="btn">LinkedIn</a>
+      <button class="btn" onclick="downloadResume()">Resume PDF</button>
+      <button class="btn" onclick="copyLink()">Share</button>
     </div>
-
-    <!-- HIRE ME CTA -->
     <div class="hire-cta">
-      <div class="hire-cta-left">
-        <div class="t">Open to new opportunities</div>
-        <div class="s">Available for full-time backend / senior engineering roles · Remote friendly</div>
-      </div>
+      <div><div class="hire-cta-t">Open to new opportunities</div><div class="hire-cta-s">Full-time backend / senior engineering roles &middot; Remote friendly</div></div>
       <div class="hire-cta-btns">
-        <button class="btn btn-primary" onclick="openHire()">✦ Hire Me</button>
-        <button class="btn" onclick="openNotepad()">📝 Leave a Note</button>
+        <button class="btn btn-primary" onclick="openHire()">Hire Me</button>
+        <button class="btn" onclick="openNotepad()">Leave a Note</button>
       </div>
     </div>
   </header>
 
-  <!-- STATS -->
   <div class="stats-row" id="statsRow">
     <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Yrs Experience</div></div>
     <div class="stat"><div class="stat-num">400%</div><div class="stat-label">Perf Gain</div></div>
     <div class="stat"><div class="stat-num">3</div><div class="stat-label">Companies</div></div>
-    <div class="stat"><div class="stat-num" id="statViews">—</div><div class="stat-label">Profile Views</div></div>
+    <div class="stat"><div class="stat-num" id="statViews">--</div><div class="stat-label">Profile Views</div></div>
   </div>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="section-header"><span class="section-tag">Skills</span><div class="section-line"></div></div>
-    <div class="skills-wrap" id="skillsWrap">
-      <div class="skill-row"><span class="skill-cat">LANGUAGES</span><div class="skill-tags"><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">Bash</span><span class="tag">SQL</span></div></div>
-      <div class="skill-row"><span class="skill-cat">FRAMEWORKS</span><div class="skill-tags"><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span class="tag">Nest.js</span><span class="tag">Vert.x</span><span class="tag">Angular</span><span class="tag">Ionic</span></div></div>
-      <div class="skill-row"><span class="skill-cat">DATA</span><div class="skill-tags"><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span></div></div>
-      <div class="skill-row"><span class="skill-cat">INFRA</span><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">CI/CD</span><span class="tag">Git</span><span class="tag">Microservices</span></div></div>
-      <div class="skill-row"><span class="skill-cat">API / INT.</span><div class="skill-tags"><span class="tag">REST</span><span class="tag">SOAP</span><span class="tag">OpenAPI</span><span class="tag">MyBatis</span><span class="tag">JAX-WS</span><span class="tag">Firebase</span></div></div>
-      <div class="skill-row"><span class="skill-cat">PRACTICES</span><div class="skill-tags"><span class="tag">Unit Testing</span><span class="tag">Selenium</span><span class="tag">DB Optimization</span><span class="tag">Security</span><span class="tag">Logging</span><span class="tag">Automation</span></div></div>
+    <div class="skills-wrap">
+      <div class="skill-row"><span class="skill-cat">LANGUAGES</span><div class="skill-tags"><span class="tag">Java 17+</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">SQL</span><span class="tag">Bash</span></div></div>
+      <div class="skill-row"><span class="skill-cat">FRAMEWORKS</span><div class="skill-tags"><span class="tag">Spring Boot 3</span><span class="tag">Spring MVC</span><span class="tag">Spring Security</span><span class="tag">Spring Batch</span><span class="tag">Spring Data JPA</span><span class="tag">Nest.js</span><span class="tag">Node.js</span><span class="tag">Vert.x</span></div></div>
+      <div class="skill-row"><span class="skill-cat">DATABASES</span><div class="skill-tags"><span class="tag">ClickHouse</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span><span class="tag">Kafka</span></div></div>
+      <div class="skill-row"><span class="skill-cat">CLOUD / OPS</span><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">CI/CD</span></div></div>
+      <div class="skill-row"><span class="skill-cat">API / INT.</span><div class="skill-tags"><span class="tag">REST</span><span class="tag">SOAP / JAX-WS</span><span class="tag">OpenAPI 3</span><span class="tag">gRPC</span><span class="tag">MyBatis</span><span class="tag">Hibernate / JPA</span></div></div>
+      <div class="skill-row"><span class="skill-cat">ARCHITECTURE</span><div class="skill-tags"><span class="tag">Microservices</span><span class="tag">Event-Driven</span><span class="tag">DDD</span><span class="tag">CQRS</span><span class="tag">Distributed Systems</span></div></div>
+      <div class="skill-row"><span class="skill-cat">TESTING</span><div class="skill-tags"><span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">Testcontainers</span><span class="tag">Selenium</span><span class="tag">SonarQube</span><span class="tag">TDD</span></div></div>
+      <div class="skill-row"><span class="skill-cat">OBSERVABILITY</span><div class="skill-tags"><span class="tag">ELK Stack</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OpenTelemetry</span><span class="tag">Distributed Tracing</span></div></div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="section-header"><span class="section-tag">Experience</span><div class="section-line"></div></div>
     <div class="job">
-      <div class="job-meta"><span class="job-co">Insuredmine LLC</span><span class="job-period">APR 2022 — PRESENT</span></div>
-      <div class="job-role">SR. SOFTWARE ENGINEER · BENGALURU</div>
+      <div class="job-meta"><span class="job-co">Insuredmine LLC</span><span class="job-period">APR 2022 -- PRESENT</span></div>
+      <div class="job-role">SR. SOFTWARE ENGINEER &middot; BENGALURU</div>
       <ul class="job-points">
-        <li>Led monolith-to-microservices migration with Spring Boot and Node.js — improved resilience and team velocity.</li>
-        <li>Implemented Redis caching for high-volume search queries — achieved 400% reduction in average response time.</li>
-        <li>Built secure data onboarding pipelines for diverse file types and external data sources.</li>
-        <li>Integrated carrier APIs via REST and SOAP (JAX-WS, MyBatis) bridging modern and legacy systems.</li>
-        <li>Managed MongoDB and MySQL across large production datasets — schema design, indexing, query optimization.</li>
+        <li>Leading architecture and development of a real-time reporting system using ClickHouse as the analytical data store and Spring Boot (Java) -- enabling generation of complex, multi-million-row insurance reports with sub-second query response at peak load.</li>
+        <li>Designed columnar data ingestion pipelines feeding ClickHouse from transactional MySQL sources, implementing materialized views and projection strategies to optimise analytical query patterns.</li>
+        <li>Architected and led full monolith-to-microservices migration using Spring Boot 3 and Node.js -- improving fault isolation and deployment velocity across the platform.</li>
+        <li>Implemented Redis caching layer for high-volume external API search queries -- achieved 400% reduction in average response time.</li>
+        <li>Built secure data onboarding pipelines supporting CSV, Excel, JSON, and XML with configurable field mapping and validation.</li>
+        <li>Integrated 10+ third-party carrier APIs via REST and SOAP (JAX-WS, MyBatis), bridging modern services with legacy EDI-based systems.</li>
+        <li>Defined service contracts via OpenAPI 3; introduced structured logging and distributed tracing via ELK and OpenTelemetry across the microservices mesh.</li>
       </ul>
     </div>
     <div class="job">
-      <div class="job-meta"><span class="job-co">Embin Technologies</span><span class="job-period">NOV 2021 — APR 2022</span></div>
-      <div class="job-role">FULL STACK ENGINEER · MUMBAI</div>
+      <div class="job-meta"><span class="job-co">Embin Technologies</span><span class="job-period">NOV 2021 -- APR 2022</span></div>
+      <div class="job-role">FULL STACK ENGINEER &middot; MUMBAI</div>
       <ul class="job-points">
-        <li>Led development of an award-winning Rx medicine delivery app with Lyft and Uber API integration.</li>
-        <li>Set up Jenkins CI/CD pipelines from scratch, eliminating manual deployment friction.</li>
+        <li>Led backend engineering for an award-winning Rx medicine delivery app -- Lyft and Uber API integration with end-to-end prescription verification and HIPAA-aligned data handling.</li>
+        <li>Established Jenkins CI/CD pipelines with automated test gates, cutting release cycle from multi-day manual deploys to sub-hour automated delivery.</li>
+        <li>Contributed to Node.js API design and Angular frontend modules across the delivery tracking dashboard.</li>
       </ul>
     </div>
     <div class="job">
-      <div class="job-meta"><span class="job-co">IDCLE Tech LLP</span><span class="job-period">AUG 2019 — NOV 2021</span></div>
-      <div class="job-role">SOFTWARE ENGINEER · MUMBAI</div>
+      <div class="job-meta"><span class="job-co">IDCLE Tech LLP</span><span class="job-period">AUG 2019 -- NOV 2021</span></div>
+      <div class="job-role">SOFTWARE ENGINEER &middot; MUMBAI</div>
       <ul class="job-points">
-        <li>Designed scalable Node.js backend for a Maharashtra government project serving city-scale usage.</li>
-        <li>Created MySQL audit triggers for automatic logging of every data modification — zero application overhead.</li>
-        <li>Profiled and resolved database bottlenecks across high-traffic endpoints using advanced query analysis.</li>
-        <li>Built cross-platform field officer mobile apps with Ionic and Firebase.</li>
+        <li>Designed high-throughput Node.js backend for a Maharashtra State Government portal -- thousands of concurrent field officers, real-time data submission and reporting.</li>
+        <li>Led full-stack delivery: Angular frontend, Node.js API, MySQL database -- adopted by government offices across the state, delivered on time.</li>
+        <li>Engineered MySQL audit trigger system for tamper-evident DML logging with zero application-layer overhead.</li>
+        <li>Query profiling and index optimisation reduced p95 query times by over 60% across high-traffic endpoints.</li>
+        <li>Built cross-platform Ionic + Firebase mobile app for offline-capable field data collection.</li>
       </ul>
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-header"><span class="section-tag">Projects</span><div class="section-line"></div></div>
     <div class="projects-grid">
-      <div class="project-card"><div class="proj-name">Microservices Migration</div><div class="proj-desc">Decomposed a monolith into 10+ independently deployable services with RabbitMQ messaging and AWS service discovery.</div><div class="proj-stack"><span class="proj-tech">Spring Boot</span><span class="proj-tech">Node.js</span><span class="proj-tech">RabbitMQ</span><span class="proj-tech">AWS</span></div></div>
-      <div class="project-card"><div class="proj-name">Rx Delivery Platform</div><div class="proj-desc">Award-winning medicine dispatch system with Lyft & Uber integration, real-time tracking, and prescription verification.</div><div class="proj-stack"><span class="proj-tech">Node.js</span><span class="proj-tech">Lyft API</span><span class="proj-tech">Uber API</span><span class="proj-tech">Firebase</span></div></div>
-      <div class="project-card"><div class="proj-name">Government Field App</div><div class="proj-desc">Cross-platform offline field data collection for Maharashtra state officials with centralised MySQL reporting.</div><div class="proj-stack"><span class="proj-tech">Angular</span><span class="proj-tech">Node.js</span><span class="proj-tech">Ionic</span><span class="proj-tech">MySQL</span></div></div>
-      <div class="project-card"><div class="proj-name">Redis Cache Layer</div><div class="proj-desc">Redis-backed caching layer for a high-traffic insurance search product — 4× response time gain under peak load.</div><div class="proj-stack"><span class="proj-tech">Redis</span><span class="proj-tech">Node.js</span><span class="proj-tech">MongoDB</span></div></div>
+      <div class="project-card"><div class="proj-name">Real-Time Reporting -- ClickHouse</div><div class="proj-desc">Leads design of analytical reporting system on ClickHouse. Spring Batch ETL from transactional stores; sub-second aggregations over millions of rows; paginated API and scheduled exports.</div><div class="proj-stack"><span class="proj-tech">ClickHouse</span><span class="proj-tech">Spring Boot</span><span class="proj-tech">Spring Batch</span><span class="proj-tech">Java</span></div></div>
+      <div class="project-card"><div class="proj-name">Microservices Migration</div><div class="proj-desc">Decomposed monolith into 12+ domain-aligned services with RabbitMQ messaging, API gateway routing, centralised logging, and service health monitoring.</div><div class="proj-stack"><span class="proj-tech">Spring Boot</span><span class="proj-tech">Node.js</span><span class="proj-tech">RabbitMQ</span><span class="proj-tech">AWS</span></div></div>
+      <div class="project-card"><div class="proj-name">Rx Delivery Platform</div><div class="proj-desc">Award-winning medicine dispatch system with Lyft and Uber integration, real-time tracking, and prescription verification. HIPAA-aligned with Jenkins CI/CD pipeline.</div><div class="proj-stack"><span class="proj-tech">Node.js</span><span class="proj-tech">Lyft API</span><span class="proj-tech">Uber API</span><span class="proj-tech">Firebase</span></div></div>
+      <div class="project-card"><div class="proj-name">Government Field App</div><div class="proj-desc">Full-stack portal for Maharashtra state officials -- Angular, Node.js, MySQL. Offline Ionic mobile app for field officers. Audit triggers and query optimisation at city scale.</div><div class="proj-stack"><span class="proj-tech">Angular</span><span class="proj-tech">Node.js</span><span class="proj-tech">Ionic</span><span class="proj-tech">MySQL</span></div></div>
     </div>
   </section>
 
-  <!-- BLOG POSTS -->
   <section id="blog">
     <div class="section-header"><span class="section-tag">Writing</span><div class="section-line"></div></div>
-    <div class="blog-fetch-row">
-      <input class="blog-source-input" id="blogUsername" placeholder="DEV.to username (e.g. sachinkotian)" value="">
-      <button class="btn" onclick="fetchBlogPosts('devto')">Fetch DEV.to</button>
-      <button class="btn" onclick="fetchBlogPosts('hashnode')">Fetch Hashnode</button>
+    <div class="blog-tabs">
+      <button class="blog-tab active" id="tabAll"    onclick="switchTab('all')">All Posts <span class="blog-tab-count" id="cntAll">--</span></button>
+      <button class="blog-tab"        id="tabMedium" onclick="switchTab('medium')">M Medium <span class="blog-tab-count" id="cntMedium">--</span></button>
+      <button class="blog-tab"        id="tabDevto"  onclick="switchTab('devto')">DEV DEV.to <span class="blog-tab-count" id="cntDevto">--</span></button>
     </div>
-    <div id="blogContainer">
-      <div class="blog-loading">Enter a DEV.to or Hashnode username above and click Fetch to load blog posts.</div>
+    <div id="blogContainer"><div class="blog-status"><span class="spin">loading</span> Fetching posts...</div></div>
+    <div id="blogFooter" class="blog-footer-row" style="display:none">
+      <span id="blogUpdated"></span>
+      <button class="btn" style="font-size:.6rem;padding:.15rem .5rem" onclick="loadPosts()">Refresh</button>
+      <a href="https://medium.com/@kotiansachin/" target="_blank" class="btn" style="font-size:.6rem;padding:.15rem .5rem">Medium</a>
+      <a href="https://dev.to/sachin_kotian_b225f65d77f" target="_blank" class="btn" style="font-size:.6rem;padding:.15rem .5rem">DEV.to</a>
     </div>
   </section>
 
-  <!-- TIMELINE -->
   <section id="timeline">
     <div class="section-header"><span class="section-tag">Timeline</span><div class="section-line"></div></div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2019</div><div class="tl-title">Started career at IDCLE Tech LLP</div><div class="tl-desc">First professional role — Node.js backends, a government Angular app, and Ionic mobile apps in Mumbai.</div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021</div><div class="tl-title">Joined Embin Technologies as Full Stack Engineer</div><div class="tl-desc">Led the award-winning Rx delivery app integrating Lyft and Uber for real-time medicine dispatch.</div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022</div><div class="tl-title">Sr. Software Engineer at Insuredmine</div><div class="tl-desc">Led microservices migration, implemented Redis caching (400% perf boost), integrated carrier APIs.</div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2026</div><div class="tl-title">Open to new challenges</div><div class="tl-desc">6+ years in, still excited about hard backend problems. Looking for teams building at scale.</div></div>
+    <div class="tl-wrap">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2019</div><div class="tl-title">Started career at IDCLE Tech LLP</div><div class="tl-desc">First professional role -- Node.js backends, Maharashtra government Angular app, Ionic mobile apps in Mumbai.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021</div><div class="tl-title">Full Stack Engineer at Embin Technologies</div><div class="tl-desc">Led the award-winning Rx delivery app integrating Lyft and Uber for real-time medicine dispatch.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022</div><div class="tl-title">Sr. Software Engineer at Insuredmine</div><div class="tl-desc">Led microservices migration, Redis caching (400% perf boost), and now leading ClickHouse real-time reporting platform.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2026</div><div class="tl-title">Open to new challenges</div><div class="tl-desc">6+ years deep in backend systems. Looking for teams building at scale with care and craft.</div></div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section>
     <div class="section-header"><span class="section-tag">Education</span><div class="section-line"></div></div>
-    <div class="edu-block"><div><div class="edu-deg">B.Sc. in Information Technology</div><div class="edu-uni">Swami Vivekanand University · Madhya Pradesh, India</div></div><span class="edu-badge">CS / IT</span></div>
+    <div class="edu-block"><div><div class="edu-deg">B.Sc. in Information Technology</div><div class="edu-uni">Swami Vivekanand University, Madhya Pradesh, India</div></div><span class="edu-badge">CS / IT</span></div>
   </section>
 
-  <!-- PHILOSOPHY -->
   <section>
     <div class="section-header"><span class="section-tag">Approach</span><div class="section-line"></div></div>
     <div class="philosophy">
-      <p class="philosophy-text">Good backend engineering is mostly invisible. When the system is fast, reliable, and clear — nobody notices. That's the goal. I optimise for the version of the code that the next engineer can understand at 2am during an incident, not the version that impresses in a code review.</p>
-      <div class="philosophy-attr">— Sachin Kotian · Engineering philosophy</div>
+      <p class="philosophy-text">Good backend engineering is mostly invisible. When the system is fast, reliable, and clear -- nobody notices. That is the goal. I optimise for the version of the code that the next engineer can understand at 2am during an incident, not the version that impresses in a code review.</p>
+      <div class="philosophy-attr">-- Sachin Kotian, Engineering philosophy</div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="section-header"><span class="section-tag">Contact</span><div class="section-line"></div></div>
     <div class="contact-grid">
@@ -551,204 +441,169 @@ footer{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justif
       <div class="contact-item"><span class="c-label">Phone</span><span class="c-value">+91 7387 171322</span></div>
       <div class="contact-item"><span class="c-label">Location</span><span class="c-value">Mumbai / Bengaluru, India</span></div>
     </div>
-    <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="openHire()" style="flex:1;justify-content:center;padding:.6rem">✦ Hire Me — Let's Talk</button>
-    </div>
+    <div style="margin-top:1rem"><button class="btn btn-primary" onclick="openHire()" style="width:100%;justify-content:center;padding:.65rem">Hire Me -- Let us Talk</button></div>
   </section>
 
   <footer>
-    <span>© 2026 SACHIN KOTIAN</span>
+    <span>2026 SACHIN KOTIAN</span>
     <span id="footerTheme">DARK MODE</span>
-    <span>sachin-kotian(1) · REV 4.0</span>
+    <span>sachin-kotian v5</span>
   </footer>
 </div>
 
 <script>
-/* ── CLOCK ── */
-(function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('en-IN',{hour12:false})+' IST';setTimeout(tick,1000)})();
+(function tick(){var n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('en-IN',{hour12:false})+' IST';setTimeout(tick,1000);})();
 
-/* ── THEME ── */
-const themes=['dark','light','sepia'],themeLabels={dark:'DARK MODE',light:'LIGHT MODE',sepia:'SEPIA MODE'};
-let ti=0;
-function cycleTheme(){ti=(ti+1)%themes.length;const t=themes[ti];document.documentElement.setAttribute('data-theme',t);document.getElementById('footerTheme').textContent=themeLabels[t];showToast('Theme: '+t.toUpperCase())}
+var themes=['dark','light','sepia'],themeLabels={dark:'DARK MODE',light:'LIGHT MODE',sepia:'SEPIA MODE'},ti=0;
+function cycleTheme(){ti=(ti+1)%themes.length;var t=themes[ti];document.documentElement.setAttribute('data-theme',t);document.getElementById('footerTheme').textContent=themeLabels[t];showToast('Theme: '+t.toUpperCase());}
 
-/* ── TOAST ── */
-let tt;
-function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2300)}
+var toastTimer;
+function showToast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('show');},2300);}
 
-/* ── COPY LINK ── */
-function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>showToast('Link copied!'))}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(function(){showToast('Link copied!');});}
 
-/* ── DOWNLOAD RESUME ── */
-function downloadResume(){
-  // Opens print dialog optimized for PDF saving
-  const s=document.createElement('style');
-  s.id='print-override';
-  s.textContent=`@media print{body{font-size:11px}section{opacity:1!important;transform:none!important}.hire-cta{display:none}}`;
-  document.head.appendChild(s);
-  window.print();
-  setTimeout(()=>s.remove(),2000);
-  showToast('Use "Save as PDF" in print dialog');
-}
+function downloadResume(){var s=document.createElement('style');s.textContent='@media print{body{font-size:11px}section{opacity:1!important;transform:none!important}.hire-cta{display:none}}';document.head.appendChild(s);window.print();setTimeout(function(){s.remove();},2000);showToast('Use Save as PDF in print dialog');}
 
-/* ── VIEW COUNTER (shared storage) ── */
-async function initViewCounter(){
+async function initViews(){try{var cur=0;try{var r=await window.storage.get('portfolio_views',true);cur=parseInt(r&&r.value?r.value:'0')||0;}catch(e){}cur++;await window.storage.set('portfolio_views',String(cur),true);document.getElementById('viewCount').textContent=cur.toLocaleString();document.getElementById('statViews').textContent=cur.toLocaleString();}catch(e){document.getElementById('viewCount').textContent='--';document.getElementById('statViews').textContent='--';}}
+initViews();
+
+function openImport(){document.getElementById('importModal').classList.add('open');}
+function closeImport(){document.getElementById('importModal').classList.remove('open');pendingData=null;document.getElementById('importPreview').style.display='none';document.getElementById('applyImportBtn').style.display='none';}
+function openHire(){document.getElementById('hireModal').classList.add('open');}
+function closeHire(){document.getElementById('hireModal').classList.remove('open');}
+function openNotepad(){document.getElementById('notepadModal').classList.add('open');loadNotes();}
+function closeNotepad(){document.getElementById('notepadModal').classList.remove('open');}
+function toggleChat(){var p=document.getElementById('chatPanel');p.classList.toggle('open');if(p.classList.contains('open'))document.getElementById('chatInput').focus();}
+
+var pendingData=null;
+function parseCSV(text){var lines=text.trim().split('\n');var headers=lines[0].split(',').map(function(h){return h.trim().replace(/"/g,'').toLowerCase();});return lines.slice(1).map(function(line){var vals=line.match(/(".*?"|[^,]+)/g)||[];var obj={};headers.forEach(function(h,i){obj[h]=(vals[i]||'').replace(/"/g,'').trim();});return obj;});}
+function handleFileInput(inp){var f=inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){processFile(e.target.result,f.name.endsWith('.json')?'json':'csv');};r.readAsText(f);}
+function handleDrop(e){e.preventDefault();document.getElementById('dropZone').classList.remove('over');var f=e.dataTransfer.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){processFile(ev.target.result,f.name.endsWith('.json')?'json':'csv');};r.readAsText(f);}
+function processFile(content,type){var p=document.getElementById('importPreview');try{pendingData=type==='json'?{type:'json',data:JSON.parse(content)}:{type:'csv',data:parseCSV(content)};p.style.display='block';p.textContent=content.substring(0,350)+(content.length>350?'\n...':'');document.getElementById('applyImportBtn').style.display='block';showToast('Parsed -- click Apply');}catch(e){p.style.display='block';p.textContent='Error: '+e.message;}}
+function loadSampleCSV(){processFile('name,role,email,phone,location,description,skills\nSachin Kotian,Sr. Software Engineer,kotian.sachin.12@gmail.com,+91-7387-171322,"Mumbai, India","Seasoned backend engineer","Java,Spring Boot,ClickHouse,Node.js,Redis,MongoDB,AWS"','csv');}
+function loadSampleJSON(){processFile(JSON.stringify({name:"Sachin Kotian",role:"Sr. Software Engineer",email:"kotian.sachin.12@gmail.com",phone:"+91-7387-171322",location:"Mumbai, India",description:"Seasoned backend engineer.",skills:["Java","Spring Boot","ClickHouse","Node.js","Redis","MongoDB","AWS"]},null,2),'json');}
+function applyImport(){if(!pendingData)return;var d=pendingData.type==='json'?pendingData.data:(pendingData.data[0]||{});if(d.name)document.querySelector('.hero-name strong').textContent=d.name;if(d.role)document.querySelector('.hero-role').textContent=d.role.toUpperCase();if(d.description)document.querySelector('.hero-desc').textContent=d.description;if(d.skills){var arr=Array.isArray(d.skills)?d.skills:d.skills.split(',').map(function(s){return s.trim();});var row=document.querySelector('.skill-row:first-child .skill-tags');if(row)row.innerHTML=arr.map(function(s){return '<span class="tag">'+esc(s)+'</span>';}).join('');}closeImport();showToast('Portfolio populated!');}
+
+async function loadNotes(){var list=document.getElementById('notesList');var badge=document.getElementById('noteBadge');var count=document.getElementById('noteCount');list.innerHTML='<div class="note-empty">Loading...</div>';try{var keys=await window.storage.list('note:',true);var noteKeys=(keys&&keys.keys?keys.keys:[]).sort().reverse();badge.textContent=noteKeys.length;count.textContent=noteKeys.length+' note'+(noteKeys.length!==1?'s':'');if(noteKeys.length===0){list.innerHTML='<div class="note-empty">No notes yet -- be the first!</div>';return;}var notes=await Promise.all(noteKeys.map(async function(k){try{var r=await window.storage.get(k,true);return r?JSON.parse(r.value):null;}catch(e){return null;}}));list.innerHTML=notes.filter(Boolean).map(function(n){return '<div class="note-card"><div class="note-card-name">'+esc(n.author||'Anonymous')+'</div><div class="note-card-text">'+esc(n.text)+'</div><div class="note-card-time">'+esc(n.time||'')+'</div></div>';}).join('');}catch(e){list.innerHTML='<div class="note-empty">Could not load notes.</div>';}}
+async function submitNote(){var author=document.getElementById('noteAuthor').value.trim()||'Anonymous';var text=document.getElementById('noteText').value.trim();if(!text){showToast('Write something first');return;}if(text.length>400){showToast('Keep it under 400 chars');return;}try{var key='note:'+Date.now();var note={author:author,text:text,time:new Date().toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})};await window.storage.set(key,JSON.stringify(note),true);document.getElementById('noteText').value='';document.getElementById('noteAuthor').value='';showToast('Note posted!');loadNotes();}catch(e){showToast('Could not post -- try again');}}
+
+var MEDIUM_POSTS=[{title:'Node.js Flame Graphs: Visualizing Performance Bottlenecks with Clarity',url:'https://medium.com/@kotiansachin/node-js-flame-graphs-visualizing-performance-bottlenecks-with-clarity-a6a5d6041755',date:'2024-01-31',readTime:'5 min read',tags:['nodejs','performance','devtools'],source:'medium'}];
+var DEV_USERNAME='sachin_kotian_b225f65d77f';
+var allPosts=[];
+var currentTab='all';
+
+async function loadPosts(){
+  var container=document.getElementById('blogContainer');
+  container.innerHTML='<div class="blog-status">Loading posts...</div>';
+  var devPosts=[];
   try{
-    // increment
-    let current=0;
-    try{const r=await window.storage.get('portfolio_views',true);current=parseInt(r?.value||'0')}catch(e){current=0}
-    current++;
-    await window.storage.set('portfolio_views',String(current),true);
-    document.getElementById('viewCount').textContent=current.toLocaleString();
-    document.getElementById('statViews').textContent=current.toLocaleString();
-  }catch(e){
-    // fallback: session-only counter using localStorage simulation
-    document.getElementById('viewCount').textContent='—';
-    document.getElementById('statViews').textContent='—';
-  }
-}
-initViewCounter();
-
-/* ── NOTEPAD (shared storage) ── */
-async function loadNotes(){
-  const list=document.getElementById('notesList');
-  const badge=document.getElementById('noteBadge');
-  const count=document.getElementById('noteCount');
-  try{
-    const keys=await window.storage.list('note:',true);
-    const noteKeys=(keys?.keys||[]).sort().reverse();
-    badge.textContent=noteKeys.length;
-    count.textContent=noteKeys.length+' note'+(noteKeys.length!==1?'s':'');
-    if(noteKeys.length===0){list.innerHTML='<div class="note-empty">No notes yet — be the first to leave one!</div>';return}
-    const notes=await Promise.all(noteKeys.map(async k=>{
-      try{const r=await window.storage.get(k,true);return r?JSON.parse(r.value):null}catch{return null}
-    }));
-    list.innerHTML=notes.filter(Boolean).map((n,i)=>`
-      <div class="note-card">
-        <div class="note-card-name">${escHtml(n.author||'Anonymous')}</div>
-        <div class="note-card-text">${escHtml(n.text)}</div>
-        <div class="note-card-time">${n.time||''}</div>
-      </div>`).join('');
-  }catch(e){list.innerHTML='<div class="blog-error">Could not load notes.</div>'}
-}
-
-async function submitNote(){
-  const author=document.getElementById('noteAuthor').value.trim()||'Anonymous';
-  const text=document.getElementById('noteText').value.trim();
-  if(!text){showToast('Please write something first');return}
-  if(text.length>400){showToast('Keep it under 400 characters');return}
-  try{
-    const key='note:'+Date.now();
-    const note={author,text,time:new Date().toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})};
-    await window.storage.set(key,JSON.stringify(note),true);
-    document.getElementById('noteText').value='';
-    document.getElementById('noteAuthor').value='';
-    showToast('Note posted!');
-    loadNotes();
-  }catch(e){showToast('Could not post note — try again')}
-}
-
-function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-
-function openNotepad(){document.getElementById('notepadPanel').classList.add('open');loadNotes()}
-function closeNotepad(){document.getElementById('notepadPanel').classList.remove('open')}
-
-/* ── HIRE ME ── */
-function openHire(){document.getElementById('hirePanel').classList.add('open')}
-function closeHire(){document.getElementById('hirePanel').classList.remove('open')}
-
-/* ── BLOG POSTS ── */
-async function fetchBlogPosts(source){
-  const username=document.getElementById('blogUsername').value.trim();
-  if(!username){showToast('Enter a username first');return}
-  const container=document.getElementById('blogContainer');
-  container.innerHTML='<div class="blog-loading">Fetching posts…</div>';
-  try{
-    let posts=[];
-    if(source==='devto'){
-      const res=await fetch(`https://dev.to/api/articles?username=${encodeURIComponent(username)}&per_page=8`);
-      if(!res.ok)throw new Error('User not found or no posts');
-      const data=await res.json();
-      posts=data.map(p=>({title:p.title,url:p.url,date:p.published_at?.slice(0,10),tags:p.tag_list?.slice(0,3)||[],reactions:p.positive_reactions_count,readTime:p.reading_time_minutes+'min read'}));
-    } else {
-      // Hashnode via public API
-      const q=`{"query":"{ user(username:\\"${username}\\") { publication { posts(page:0) { title slug dateAdded readTime tags { name } totalReactions } } } }"}`;
-      const res=await fetch('https://api.hashnode.com',{method:'POST',headers:{'Content-Type':'application/json'},body:q});
-      if(!res.ok)throw new Error('Hashnode fetch failed');
-      const data=await res.json();
-      const raw=data?.data?.user?.publication?.posts||[];
-      posts=raw.map(p=>({title:p.title,url:`https://hashnode.com/@${username}/${p.slug}`,date:p.dateAdded?.slice(0,10),tags:p.tags?.slice(0,3).map(t=>t.name)||[],reactions:p.totalReactions,readTime:p.readTime+'min read'}));
+    var res=await fetch('https://dev.to/api/articles?username='+DEV_USERNAME+'&per_page=20');
+    if(res.ok){
+      var data=await res.json();
+      devPosts=data.map(function(p){return{title:p.title,url:p.url,date:p.published_at?p.published_at.slice(0,10):'',readTime:p.reading_time_minutes+' min read',tags:(p.tag_list||[]).slice(0,3),reactions:p.positive_reactions_count,source:'devto'};});
     }
-    if(posts.length===0){container.innerHTML='<div class="blog-error">No posts found for this username.</div>';return}
-    container.innerHTML=`<div class="blog-grid">${posts.map((p,i)=>`
-      <a class="blog-card" href="${p.url}" target="_blank">
-        <span class="blog-card-num">${String(i+1).padStart(2,'0')}</span>
-        <div class="blog-card-body">
-          <div class="blog-title">${escHtml(p.title)}</div>
-          <div class="blog-meta">
-            <span>${p.date||''}</span>
-            <span>${p.readTime||''}</span>
-            ${p.reactions?`<span>♥ ${p.reactions}</span>`:''}
-          </div>
-          <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem">${(p.tags||[]).map(t=>`<span class="blog-tag">${escHtml(t)}</span>`).join('')}</div>
-        </div>
-        <span class="blog-arrow">↗</span>
-      </a>`).join('')}</div>`;
-    showToast(`Loaded ${posts.length} posts`);
-  }catch(e){container.innerHTML=`<div class="blog-error">Error: ${e.message}</div>`}
+  }catch(e){}
+  allPosts=MEDIUM_POSTS.concat(devPosts).sort(function(a,b){return(b.date||'').localeCompare(a.date||'');});
+  document.getElementById('cntAll').textContent=allPosts.length;
+  document.getElementById('cntMedium').textContent=MEDIUM_POSTS.length;
+  document.getElementById('cntDevto').textContent=devPosts.length;
+  document.getElementById('blogUpdated').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour12:false});
+  document.getElementById('blogFooter').style.display='flex';
+  renderPosts(currentTab);
 }
 
-/* ── IMPORT ── */
-let pendingData=null;
-function openImport(){document.getElementById('importPanel').classList.add('open')}
-function closeImport(){document.getElementById('importPanel').classList.remove('open');pendingData=null;document.getElementById('importPreview').style.display='none';document.getElementById('applyImportBtn').style.display='none'}
-function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim().replace(/"/g,'').toLowerCase());return lines.slice(1).map(line=>{const vals=line.match(/(".*?"|[^,]+)/g)||[];const obj={};headers.forEach((h,i)=>{obj[h]=(vals[i]||'').replace(/"/g,'').trim()});return obj})}
-function handleFileInput(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=e=>processFile(e.target.result,f.name.endsWith('.json')?'json':'csv');r.readAsText(f)}
-function handleDrop(e){e.preventDefault();document.getElementById('dropZone').classList.remove('over');const f=e.dataTransfer.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>processFile(ev.target.result,f.name.endsWith('.json')?'json':'csv');r.readAsText(f)}
-function processFile(content,type){const p=document.getElementById('importPreview');try{pendingData=type==='json'?{type,data:JSON.parse(content)}:{type,data:parseCSV(content)};p.style.display='block';p.textContent=content.substring(0,350)+(content.length>350?'\n…':'');document.getElementById('applyImportBtn').style.display='block';showToast('Parsed — click Apply')}catch(e){p.style.display='block';p.textContent='❌ '+e.message}}
-function loadSampleCSV(){processFile(`name,role,email,phone,location,description,skills\nSachin Kotian,Sr. Software Engineer,kotian.sachin.12@gmail.com,+91-7387-171322,"Mumbai, India","Seasoned backend engineer building scalable distributed systems","JavaScript,Java,Spring Boot,Node.js,Redis,MongoDB,AWS"`,'csv')}
-function loadSampleJSON(){processFile(JSON.stringify({name:"Sachin Kotian",role:"Sr. Software Engineer",email:"kotian.sachin.12@gmail.com",phone:"+91-7387-171322",location:"Mumbai, India",description:"Seasoned backend engineer building scalable distributed systems.",skills:["JavaScript","Java","Spring Boot","Node.js","Redis","MongoDB","AWS","Docker"]},null,2),'json')}
-function applyImport(){if(!pendingData)return;let d=pendingData.type==='json'?pendingData.data:(pendingData.data[0]||{});if(d.name)document.querySelector('.hero-name strong').textContent=d.name;if(d.role)document.querySelector('.hero-role').textContent=d.role.toUpperCase();if(d.description)document.querySelector('.hero-desc').textContent=d.description;if(d.skills){const arr=Array.isArray(d.skills)?d.skills:d.skills.split(',').map(s=>s.trim());const row=document.querySelector('#skillsWrap .skill-row:first-child .skill-tags');if(row)row.innerHTML=arr.map(s=>`<span class="tag">${s}</span>`).join('')}closeImport();showToast('Portfolio populated!')}
+function renderPosts(tab){
+  currentTab=tab;
+  var container=document.getElementById('blogContainer');
+  var list=tab==='all'?allPosts:allPosts.filter(function(p){return p.source===tab;});
+  if(list.length===0){
+    var msg=tab==='devto'?'No DEV.to posts yet. <a href="https://dev.to/sachin_kotian_b225f65d77f" target="_blank" style="color:var(--muted2)">Visit profile</a>':'No posts found.';
+    container.innerHTML='<div class="blog-status">'+msg+'</div>';
+    return;
+  }
+  container.innerHTML='<div class="blog-grid">'+list.map(function(p){
+    var tagsHtml=(p.tags&&p.tags.length)?'<div class="blog-tags-row">'+p.tags.map(function(t){return'<span class="blog-tag">'+esc(t)+'</span>';}).join('')+'</div>':'';
+    var reactions=p.reactions?'<span>hearts '+p.reactions+'</span>':'';
+    var bc=p.source==='medium'?'medium':'devto';
+    var bl=p.source==='medium'?'M':'DEV';
+    return'<a class="blog-card" href="'+p.url+'" target="_blank" rel="noopener"><span class="blog-src-badge '+bc+'">'+bl+'</span><div class="blog-body"><div class="blog-title">'+esc(p.title)+'</div><div class="blog-meta"><span>'+esc(p.date||'')+'</span><span>'+esc(p.readTime||'')+'</span>'+reactions+'</div>'+tagsHtml+'</div><span class="blog-arrow">go</span></a>';
+  }).join('')+'</div>';
+}
 
-/* ── AI CHAT ── */
-const ctx=`Sachin Kotian is a Sr. Software Engineer with 6+ years of backend experience. Skills: JavaScript, Java, Spring Boot, Node.js, Nest.js, Vert.x, MongoDB, MySQL, Redis, RabbitMQ, AWS, Angular, Ionic, Docker, Jenkins, CI/CD, Git, REST, SOAP, JAX-WS, OpenAPI, MyBatis, Firebase, Selenium, Bash. Experience: Insuredmine LLC (Apr 2022-Present): microservices migration, Redis caching (400% perf), data pipelines, SOAP/REST API integrations. Embin Technologies (Nov 2021-Apr 2022): award-winning Rx delivery app with Lyft/Uber APIs, Jenkins CI/CD. IDCLE Tech LLP (Aug 2019-Nov 2021): government Node.js/Angular/MySQL project, MySQL audit triggers, Ionic/Firebase mobile apps. Education: B.Sc. IT, Swami Vivekanand University. Contact: kotian.sachin.12@gmail.com, +91-7387-171322.`;
-function toggleChat(){const p=document.getElementById('chatPanel');p.classList.toggle('open');if(p.classList.contains('open'))document.getElementById('chatInput').focus()}
-async function sendChat(){const inp=document.getElementById('chatInput');const q=inp.value.trim();if(!q)return;inp.value='';addMsg('user',q);const t=addTyping();try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:350,system:`You are a helpful assistant on Sachin Kotian's portfolio. Answer questions about him using this data:\n${ctx}\nKeep answers to 2-4 sentences, positive and conversational.`,messages:[{role:'user',content:q}]})});const data=await res.json();t.remove();addMsg('ai',data.content?.[0]?.text||'Sorry, no response.')}catch(e){t.remove();addMsg('ai','Connection error.')}}
-function addMsg(role,text){const msgs=document.getElementById('chatMessages');const d=document.createElement('div');d.className='msg '+role;d.innerHTML=`<span class="msg-label">${role==='user'?'YOU':'AI'}</span><div class="msg-bubble">${text}</div>`;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-function addTyping(){const msgs=document.getElementById('chatMessages');const d=document.createElement('div');d.className='msg ai';d.innerHTML='<span class="msg-label">AI</span><div class="typing"><span></span><span></span><span></span></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.blog-tab').forEach(function(t){t.classList.remove('active');});
+  var idMap={all:'tabAll',medium:'tabMedium',devto:'tabDevto'};
+  var el=document.getElementById(idMap[tab]);
+  if(el)el.classList.add('active');
+  if(allPosts.length)renderPosts(tab);
+  else loadPosts();
+}
+loadPosts();
 
-/* ── CMD PALETTE ── */
-const cmds=[
-  {icon:'#',label:'Jump to About',action:()=>{scroll('about')}},
-  {icon:'#',label:'Jump to Skills',action:()=>{scroll('skills')}},
-  {icon:'#',label:'Jump to Experience',action:()=>{scroll('experience')}},
-  {icon:'#',label:'Jump to Projects',action:()=>{scroll('projects')}},
-  {icon:'#',label:'Jump to Blog',action:()=>{scroll('blog')}},
-  {icon:'#',label:'Jump to Contact',action:()=>{scroll('contact')}},
-  {icon:'✦',label:'Hire Me',action:()=>{openHire();closeCmd()}},
-  {icon:'📝',label:'Open Notepad',action:()=>{openNotepad();closeCmd()}},
-  {icon:'◐',label:'Cycle Theme',action:()=>{cycleTheme();closeCmd()}},
-  {icon:'⬆',label:'Import Resume',action:()=>{openImport();closeCmd()}},
-  {icon:'✦',label:'Open AI Chat',action:()=>{toggleChat();closeCmd()}},
-  {icon:'⎘',label:'Copy Link',action:()=>{copyLink();closeCmd()}},
-  {icon:'⬇',label:'Download Resume PDF',action:()=>{downloadResume();closeCmd()}},
+var RESUME_CTX='Sachin Kotian is a Sr. Software Engineer with 6+ years of backend experience. Currently leading a real-time reporting system using ClickHouse and Spring Boot at Insuredmine. Skills: Java 17, Spring Boot 3, Spring Batch, Spring Security, Spring Data JPA, ClickHouse, MySQL, MongoDB, PostgreSQL, Redis, RabbitMQ, Kafka, AWS, Docker, Kubernetes, Jenkins, REST, SOAP, OpenAPI 3, gRPC, MyBatis, Hibernate/JPA, JUnit 5, Mockito, Testcontainers, ELK, Prometheus, Grafana, OpenTelemetry, Node.js, Angular, Ionic, Firebase. Past: Embin Technologies (Rx delivery app), IDCLE Tech LLP (Maharashtra govt portal). Education: B.Sc. IT, Swami Vivekanand University. Contact: kotian.sachin.12@gmail.com, +91-7387-171322.';
+
+async function sendChat(){
+  var inp=document.getElementById('chatInput');
+  var q=inp.value.trim();if(!q)return;
+  inp.value='';
+  addMsg('user',q);
+  var typing=addTyping();
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:350,system:'You are a helpful assistant on Sachin Kotian portfolio. Answer questions about him using this data:\n'+RESUME_CTX+'\nKeep answers to 2-4 sentences, positive and conversational.',messages:[{role:'user',content:q}]})});
+    var data=await res.json();
+    typing.remove();
+    addMsg('ai',data.content&&data.content[0]?data.content[0].text:'Sorry, no response.');
+  }catch(e){typing.remove();addMsg('ai','Connection error. Try again.');}
+}
+function addMsg(role,text){var msgs=document.getElementById('chatMessages');var d=document.createElement('div');d.className='msg '+role;d.innerHTML='<span class="msg-lbl">'+(role==='user'?'YOU':'AI')+'</span><div class="msg-bubble">'+esc(text)+'</div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+function addTyping(){var msgs=document.getElementById('chatMessages');var d=document.createElement('div');d.className='msg ai';d.innerHTML='<span class="msg-lbl">AI</span><div class="typing"><span></span><span></span><span></span></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+
+var CMDS=[
+  {icon:'#',label:'Jump to About',      fn:function(){gotoSection('about');}},
+  {icon:'#',label:'Jump to Skills',     fn:function(){gotoSection('skills');}},
+  {icon:'#',label:'Jump to Experience', fn:function(){gotoSection('experience');}},
+  {icon:'#',label:'Jump to Projects',   fn:function(){gotoSection('projects');}},
+  {icon:'#',label:'Jump to Blog',       fn:function(){gotoSection('blog');}},
+  {icon:'#',label:'Jump to Contact',    fn:function(){gotoSection('contact');}},
+  {icon:'H', label:'Hire Me',           fn:function(){openHire();closeCmd();}},
+  {icon:'N', label:'Open Notepad',      fn:function(){openNotepad();closeCmd();}},
+  {icon:'A', label:'Open AI Chat',      fn:function(){toggleChat();closeCmd();}},
+  {icon:'T', label:'Cycle Theme',       fn:function(){cycleTheme();closeCmd();}},
+  {icon:'I', label:'Import Resume',     fn:function(){openImport();closeCmd();}},
+  {icon:'C', label:'Copy Link',         fn:function(){copyLink();closeCmd();}},
+  {icon:'D', label:'Download Resume',   fn:function(){downloadResume();closeCmd();}},
 ];
-function scroll(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});closeCmd()}
-let sel=0;
-function renderCmd(f=''){const res=f?cmds.filter(c=>c.label.toLowerCase().includes(f.toLowerCase())):cmds;document.getElementById('cmdResults').innerHTML=res.map((c,i)=>`<div class="cmd-item${i===0?' selected':''}">${c.icon} ${c.label}</div>`).join('');document.querySelectorAll('.cmd-item').forEach((el,i)=>{el.onclick=()=>res[i].action()});sel=0}
-function openCmd(){document.getElementById('cmdOverlay').classList.add('open');document.getElementById('cmdInput').value='';renderCmd();document.getElementById('cmdInput').focus()}
-function closeCmd(){document.getElementById('cmdOverlay').classList.remove('open')}
-document.getElementById('cmdInput').addEventListener('input',e=>renderCmd(e.target.value));
-document.getElementById('cmdInput').addEventListener('keydown',e=>{const items=document.querySelectorAll('.cmd-item');if(e.key==='ArrowDown'){e.preventDefault();items[sel]?.classList.remove('selected');sel=Math.min(sel+1,items.length-1);items[sel]?.classList.add('selected');items[sel]?.scrollIntoView({block:'nearest'})}if(e.key==='ArrowUp'){e.preventDefault();items[sel]?.classList.remove('selected');sel=Math.max(sel-1,0);items[sel]?.classList.add('selected');items[sel]?.scrollIntoView({block:'nearest'})}if(e.key==='Enter')items[sel]?.click();if(e.key==='Escape')closeCmd()});
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openCmd()}if(e.key==='Escape'){closeCmd();document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'))}});
+function gotoSection(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});closeCmd();}
+var cmdSel=0;
+function renderCmd(f){
+  var res=f?CMDS.filter(function(c){return c.label.toLowerCase().indexOf(f.toLowerCase())>-1;}):CMDS;
+  document.getElementById('cmdResults').innerHTML=res.map(function(c,i){return'<div class="cmd-item'+(i===0?' selected':'')+'">'+c.icon+' '+c.label+'</div>';}).join('');
+  document.querySelectorAll('.cmd-item').forEach(function(el,i){el.onclick=function(){res[i].fn();};});
+  cmdSel=0;
+}
+function openCmd(){document.getElementById('cmdOverlay').classList.add('open');document.getElementById('cmdInput').value='';renderCmd('');document.getElementById('cmdInput').focus();}
+function closeCmd(){document.getElementById('cmdOverlay').classList.remove('open');}
+document.getElementById('cmdInput').addEventListener('input',function(e){renderCmd(e.target.value);});
+document.getElementById('cmdInput').addEventListener('keydown',function(e){
+  var items=document.querySelectorAll('.cmd-item');
+  if(e.key==='ArrowDown'){e.preventDefault();if(items[cmdSel])items[cmdSel].classList.remove('selected');cmdSel=Math.min(cmdSel+1,items.length-1);if(items[cmdSel]){items[cmdSel].classList.add('selected');items[cmdSel].scrollIntoView({block:'nearest'});}}
+  if(e.key==='ArrowUp'){e.preventDefault();if(items[cmdSel])items[cmdSel].classList.remove('selected');cmdSel=Math.max(cmdSel-1,0);if(items[cmdSel]){items[cmdSel].classList.add('selected');items[cmdSel].scrollIntoView({block:'nearest'});}}
+  if(e.key==='Enter'){if(items[cmdSel])items[cmdSel].click();}
+  if(e.key==='Escape'){closeCmd();}
+});
+document.addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openCmd();}
+  if(e.key==='Escape'){closeCmd();document.querySelectorAll('.modal-overlay').forEach(function(m){m.classList.remove('open');});}
+});
 
-/* ── SCROLL REVEAL ── */
-const io=new IntersectionObserver(ent=>{ent.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.07});
-document.querySelectorAll('section,.stats-row').forEach(el=>io.observe(el));
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.07});
+document.querySelectorAll('section,.stats-row').forEach(function(el){io.observe(el);});
 
-/* ── ACTIVE NAV ── */
-const navObs=new IntersectionObserver(ent=>{ent.forEach(e=>{const l=document.querySelector(`.sidenav a[href="#${e.target.id}"]`);if(l)l.classList.toggle('active',e.isIntersecting)})},{threshold:.4});
-document.querySelectorAll('[id]').forEach(el=>navObs.observe(el));
+var navObs=new IntersectionObserver(function(entries){entries.forEach(function(e){var link=document.querySelector('.sidenav a[href="#'+e.target.id+'"]');if(link)link.classList.toggle('active',e.isIntersecting);});},{threshold:0.4});
+document.querySelectorAll('[id]').forEach(function(el){navObs.observe(el);});
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body>
 </html>
